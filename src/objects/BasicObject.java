@@ -11,14 +11,16 @@ public class BasicObject {
   private Image object;
   private int position = 350;
   private float speed = 0.1f;
+  private int y;
 
-  public BasicObject(String imgSrc) throws SlickException {
+  public BasicObject(String imgSrc, int y) throws SlickException {
     object = new Image(imgSrc);
     position = 350;
+    this.y = y;
   }
   
   public void render(Graphics graphics) {
-    graphics.drawImage(object, position, 420);
+    graphics.drawImage(object, position, y-object.getHeight());
   }
 
   public void update(int delta) {

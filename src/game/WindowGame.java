@@ -28,7 +28,7 @@ public class WindowGame extends BasicGame {
   Farmer farmer;
   Monster monster;
   List<BasicObject> listConsumables;
-  
+
   int ellapsedTime = 0;
 
   public WindowGame() {
@@ -57,16 +57,16 @@ public class WindowGame extends BasicGame {
     background.update(delta);
     updateListConsumables(delta);
     ellapsedTime += delta;
-    
-    if(ellapsedTime >= 10000) {
+
+    if (ellapsedTime >= 10000) {
       int rand = RandomGenerator.getRandomNumber(1, 4);
-      if(rand == 1)
-        listConsumables.add(new Bread());
-      else if(rand == 2)
-        listConsumables.add(new Carrot());
+      if (rand == 1)
+        listConsumables.add(new Bread(background.getGroundHeight()));
+      else if (rand == 2)
+        listConsumables.add(new Carrot(background.getGroundHeight()));
       else
-        listConsumables.add(new Cheese());
-      
+        listConsumables.add(new Cheese(background.getGroundHeight()));
+
       ellapsedTime = 0;
     }
   }
@@ -77,32 +77,28 @@ public class WindowGame extends BasicGame {
       container.exit();
     }
   }
-  
-    public static void main(String[] args) throws SlickException {
+
+  public static void main(String[] args) throws SlickException {
     AppGameContainer app = new AppGameContainer(new WindowGame(), GAME_WIDTH, GAME_HEIGHT, false);
     app.setTargetFrameRate(60);
     app.setShowFPS(false);
     app.start();
   }
-  
+
   private void initConsumables() throws SlickException {
     listConsumables = new ArrayList<>();
-    listConsumables.add(new Carrot());
-    listConsumables.add(new Bread());
-    listConsumables.add(new Cheese());
+    listConsumables.add(new Carrot(background.getGroundHeight()));
+    listConsumables.add(new Bread(background.getGroundHeight()));
+    listConsumables.add(new Cheese(background.getGroundHeight()));
   }
-
-  
 
   private void renderListConsumables(Graphics graphics) {
     for (BasicObject obj : listConsumables)
       obj.render(graphics);
-    }
   }
 
   private void updateListConsumables(int delta) {
     for (BasicObject obj : listConsumables)
       obj.update(delta);
-    }
   }
 }
