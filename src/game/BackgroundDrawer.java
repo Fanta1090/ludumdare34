@@ -7,7 +7,7 @@ import org.newdawn.slick.SlickException;
 public class BackgroundDrawer {
 
   private Image back;
-  private int move;
+  private int move = 0;
   private float speed = 0.1f;
 
   public BackgroundDrawer(String imageSrc) throws SlickException {
