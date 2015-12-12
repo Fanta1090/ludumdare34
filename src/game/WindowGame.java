@@ -1,4 +1,5 @@
 package game;
+
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.GameContainer;
@@ -9,30 +10,33 @@ import org.newdawn.slick.SlickException;
 public class WindowGame extends BasicGame {
 
   GameContainer container;
+  BackgroundDrawer background;
+  float move = 0;
 
   public WindowGame() {
     super("LD34");
   }
 
   public static void main(String[] args) throws SlickException {
-    new AppGameContainer(new WindowGame(), 640, 480, false).start();
-  }
-
-  @Override
-  public void render(GameContainer gameContainer, Graphics graphics) throws SlickException {
-    // TODO Auto-generated method stub
-
+    AppGameContainer app = new AppGameContainer(new WindowGame(), 640, 480, false);
+    app.setTargetFrameRate(60);
+    app.start();
   }
 
   @Override
   public void init(GameContainer container) throws SlickException {
     this.container = container;
-
+    background =  new BackgroundDrawer("resources/images/background.png");
+  }
+  
+  @Override
+  public void render(GameContainer gameContainer, Graphics graphics) throws SlickException {
+    background.render(graphics);
   }
 
   @Override
   public void update(GameContainer gameContainer, int delta) throws SlickException {
-    // TODO Auto-generated method stub
+    background.update(delta);
   }
 
   @Override
@@ -41,4 +45,5 @@ public class WindowGame extends BasicGame {
       container.exit();
     }
   }
+
 }
