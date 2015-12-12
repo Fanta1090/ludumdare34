@@ -15,7 +15,7 @@ public class BasicObject {
 
   public BasicObject(String imgSrc, int y) throws SlickException {
     object = new Image(imgSrc);
-    position = 350;
+    position = 1250;
     this.y = y;
   }
   
@@ -25,8 +25,8 @@ public class BasicObject {
 
   public void update(int delta) {
     position -= speed * delta;
-    if(position < 0) {
-      position = RandomGenerator.getRandomNumber(300, 2000);
+    if(position < 0-object.getWidth()) {
+      position = RandomGenerator.getRandomNumber(1250, 2000);
     }
   }
   

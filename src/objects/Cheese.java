@@ -6,7 +6,7 @@ public class Cheese extends BasicObject {
 
   public Cheese(int y) throws SlickException {
     super("resources/images/fromage-orange.png", y);
-    this.setStartingPosition(275);
+    this.setStartingPosition(1475);
     
     System.out.println("Cheese created");
   }
