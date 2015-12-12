@@ -20,8 +20,11 @@ import utils.RandomGenerator;
 
 public class WindowGame extends BasicGame {
 
+  public static final Integer GAME_WIDTH = 1200;
+  public static final Integer GAME_HEIGHT = 600;
+
   GameContainer container;
-  BackgroundDrawer background;
+  Parallaxe background;
   Farmer farmer;
   Monster monster;
   List<BasicObject> listConsumables;
@@ -32,19 +35,12 @@ public class WindowGame extends BasicGame {
     super("LD34");
   }
 
-  public static void main(String[] args) throws SlickException {
-    AppGameContainer app = new AppGameContainer(new WindowGame(), 640, 480, false);
-    app.setTargetFrameRate(60);
-    app.setShowFPS(false);
-    app.start();
-  }
-
   @Override
   public void init(GameContainer container) throws SlickException {
     this.container = container;
-    background = new BackgroundDrawer("resources/images/background.png");
-    farmer = new Farmer();
-    monster = new Monster();
+    background = new Parallaxe();
+    farmer = new Farmer(250, background.getGroundHeight());
+    monster = new Monster(-100, -60 + background.getGroundHeight());
     initConsumables();
   }
 
@@ -82,22 +78,31 @@ public class WindowGame extends BasicGame {
     }
   }
   
+    public static void main(String[] args) throws SlickException {
+    AppGameContainer app = new AppGameContainer(new WindowGame(), GAME_WIDTH, GAME_HEIGHT, false);
+    app.setTargetFrameRate(60);
+    app.setShowFPS(false);
+    app.start();
+  }
+  
   private void initConsumables() throws SlickException {
     listConsumables = new ArrayList<>();
     listConsumables.add(new Carrot());
     listConsumables.add(new Bread());
     listConsumables.add(new Cheese());
   }
+
   
 
   private void renderListConsumables(Graphics graphics) {
     for (BasicObject obj : listConsumables)
       obj.render(graphics);
+    }
   }
 
   private void updateListConsumables(int delta) {
     for (BasicObject obj : listConsumables)
       obj.update(delta);
+    }
   }
-
 }
