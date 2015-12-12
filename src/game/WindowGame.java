@@ -20,6 +20,7 @@ public class WindowGame extends BasicGame {
   public static void main(String[] args) throws SlickException {
     AppGameContainer app = new AppGameContainer(new WindowGame(), 640, 480, false);
     app.setTargetFrameRate(60);
+    app.setShowFPS(false);
     app.start();
   }
 
