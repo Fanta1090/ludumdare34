@@ -20,7 +20,7 @@ public class Monster extends AnimatedCharacter {
     dragonImages[2] = img3;
     dragonImages[3] = img4;
     
-    Animation idleDragon = new Animation(dragonImages, 90);
+    Animation idleDragon = new Animation(dragonImages, 180);
     idleDragon.setAutoUpdate(true);
     idleDragon.setLooping(true);
     this.addState(STATE_IDLE, idleDragon);
