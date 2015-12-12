@@ -7,11 +7,15 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
+import characters.Farmer;
+
 public class WindowGame extends BasicGame {
 
   GameContainer container;
   BackgroundDrawer background;
   float move = 0;
+
+  Farmer farmer;
 
   public WindowGame() {
     super("LD34");
@@ -26,12 +30,14 @@ public class WindowGame extends BasicGame {
   @Override
   public void init(GameContainer container) throws SlickException {
     this.container = container;
-    background =  new BackgroundDrawer("resources/images/background.png");
+    background = new BackgroundDrawer("resources/images/background.png");
+    farmer = new Farmer();
   }
-  
+
   @Override
   public void render(GameContainer gameContainer, Graphics graphics) throws SlickException {
     background.render(graphics);
+    farmer.draw(graphics);
   }
 
   @Override
