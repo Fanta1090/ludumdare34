@@ -34,7 +34,7 @@ public abstract class AnimatedCharacter extends GameObject {
    *          graphics where you want this object to be drawn
    */
   public void render(Graphics g) {
-    g.drawAnimation(statedAnimations.get(STATE_IDLE), x, y);
+    g.drawAnimation(statedAnimations.get(STATE_IDLE), x, y - statedAnimations.get(STATE_IDLE).getHeight());
   }
 
   public void addState(int state, Animation anim) {

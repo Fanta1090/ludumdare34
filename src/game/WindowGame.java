@@ -1,5 +1,8 @@
 package game;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.GameContainer;
@@ -9,6 +12,10 @@ import org.newdawn.slick.SlickException;
 
 import characters.Farmer;
 import characters.Monster;
+import objects.BasicObject;
+import objects.Bread;
+import objects.Carrot;
+import objects.Cheese;
 
 public class WindowGame extends BasicGame {
 
@@ -19,6 +26,7 @@ public class WindowGame extends BasicGame {
   Parallaxe background;
   Farmer farmer;
   Monster monster;
+  List<BasicObject> listConsumables;
 
   public WindowGame() {
     super("LD34");
@@ -28,8 +36,14 @@ public class WindowGame extends BasicGame {
   public void init(GameContainer container) throws SlickException {
     this.container = container;
     background = new Parallaxe();
-    farmer = new Farmer();
-    monster = new Monster();
+    farmer = new Farmer(250, background.getGroundHeight());
+    monster = new Monster(-100, -60 + background.getGroundHeight());
+
+    // Init of consumables
+    listConsumables = new ArrayList<>();
+    listConsumables.add(new Carrot());
+    listConsumables.add(new Bread());
+    listConsumables.add(new Cheese());
   }
 
   @Override
@@ -37,11 +51,13 @@ public class WindowGame extends BasicGame {
     background.render(graphics);
     farmer.render(graphics);
     monster.render(graphics);
+    renderListConsumables(graphics);
   }
 
   @Override
   public void update(GameContainer gameContainer, int delta) throws SlickException {
     background.update(delta);
+    updateListConsumables(delta);
   }
 
   @Override
@@ -56,5 +72,17 @@ public class WindowGame extends BasicGame {
     app.setTargetFrameRate(60);
     app.setShowFPS(false);
     app.start();
+  }
+
+  private void renderListConsumables(Graphics graphics) {
+    for (BasicObject obj : listConsumables) {
+      obj.render(graphics);
+    }
+  }
+
+  private void updateListConsumables(int delta) {
+    for (BasicObject obj : listConsumables) {
+      obj.update(delta);
+    }
   }
 }

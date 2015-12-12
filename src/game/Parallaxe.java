@@ -33,4 +33,8 @@ public class Parallaxe {
       backgroundDrawer.update(delta);
     }
   }
+
+  public Integer getGroundHeight() {
+    return WindowGame.GAME_HEIGHT - images.get(images.size() - 1).getImage().getHeight();
+  }
 }
