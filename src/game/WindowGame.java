@@ -38,7 +38,7 @@ public class WindowGame extends BasicGame {
   @Override
   public void render(GameContainer gameContainer, Graphics graphics) throws SlickException {
     background.render(graphics);
-    farmer.draw(graphics);
+    farmer.render(graphics);
   }
 
   @Override

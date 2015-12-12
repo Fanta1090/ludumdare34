@@ -42,7 +42,7 @@ public abstract class AnimatedCharacter {
    * @param g
    *          graphics where you want this object to be drawn
    */
-  public void draw(Graphics g) {
+  public void render(Graphics g) {
     g.drawAnimation(statedAnimations.get(STATE_IDLE), x, y);
   }
 
