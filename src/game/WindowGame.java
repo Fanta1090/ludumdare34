@@ -14,8 +14,6 @@ public class WindowGame extends BasicGame {
 
   GameContainer container;
   BackgroundDrawer background;
-  float move = 0;
-
   Farmer farmer;
   Monster monster;
 
