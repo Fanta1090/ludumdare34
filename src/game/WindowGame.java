@@ -40,7 +40,7 @@ public class WindowGame extends BasicGame {
     this.container = container;
     background = new Parallaxe();
     farmer = new Farmer(250, background.getGroundHeight());
-    monster = new Monster(-100, -60 + background.getGroundHeight());
+    monster = new Monster(-100, -20 + background.getGroundHeight());
     initConsumables();
   }
 
@@ -48,7 +48,7 @@ public class WindowGame extends BasicGame {
   public void render(GameContainer gameContainer, Graphics graphics) throws SlickException {
     background.render(graphics);
     farmer.render(graphics);
-    monster.render(graphics);
+    monster.renderM(graphics);
     renderListConsumables(graphics);
   }
 
@@ -67,8 +67,10 @@ public class WindowGame extends BasicGame {
       else
         listConsumables.add(new Cheese(background.getGroundHeight()));
 
+      monster.throwFireBall();
       ellapsedTime = 0;
     }
+    monster.update(delta);
   }
 
   @Override
