@@ -7,6 +7,8 @@ public class Bread extends BasicObject {
   public Bread() throws SlickException {
     super("resources/images/pain-vert.png");
     this.setStartingPosition(540);
+    
+    System.out.println("Bread created");
   }
 
 }

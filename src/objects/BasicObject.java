@@ -24,7 +24,7 @@ public class BasicObject {
   public void update(int delta) {
     position -= speed * delta;
     if(position < 0) {
-      position = RandomGenerator.getRandomNumber();
+      position = RandomGenerator.getRandomNumber(300, 2000);
     }
   }
   

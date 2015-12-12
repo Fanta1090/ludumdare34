@@ -16,6 +16,7 @@ import objects.BasicObject;
 import objects.Bread;
 import objects.Carrot;
 import objects.Cheese;
+import utils.RandomGenerator;
 
 public class WindowGame extends BasicGame {
 
@@ -24,6 +25,8 @@ public class WindowGame extends BasicGame {
   Farmer farmer;
   Monster monster;
   List<BasicObject> listConsumables;
+  
+  int ellapsedTime = 0;
 
   public WindowGame() {
     super("LD34");
@@ -42,12 +45,7 @@ public class WindowGame extends BasicGame {
     background = new BackgroundDrawer("resources/images/background.png");
     farmer = new Farmer();
     monster = new Monster();
-
-    // Init of consumables
-    listConsumables = new ArrayList<>();
-    listConsumables.add(new Carrot());
-    listConsumables.add(new Bread());
-    listConsumables.add(new Cheese());
+    initConsumables();
   }
 
   @Override
@@ -62,6 +60,19 @@ public class WindowGame extends BasicGame {
   public void update(GameContainer gameContainer, int delta) throws SlickException {
     background.update(delta);
     updateListConsumables(delta);
+    ellapsedTime += delta;
+    
+    if(ellapsedTime >= 10000) {
+      int rand = RandomGenerator.getRandomNumber(1, 4);
+      if(rand == 1)
+        listConsumables.add(new Bread());
+      else if(rand == 2)
+        listConsumables.add(new Carrot());
+      else
+        listConsumables.add(new Cheese());
+      
+      ellapsedTime = 0;
+    }
   }
 
   @Override
@@ -70,14 +81,22 @@ public class WindowGame extends BasicGame {
       container.exit();
     }
   }
-
-  private void renderListConsumables(Graphics graphics) {
-    for(BasicObject obj : listConsumables)
-      obj.render(graphics);
+  
+  private void initConsumables() throws SlickException {
+    listConsumables = new ArrayList<>();
+    listConsumables.add(new Carrot());
+    listConsumables.add(new Bread());
+    listConsumables.add(new Cheese());
   }
   
+
+  private void renderListConsumables(Graphics graphics) {
+    for (BasicObject obj : listConsumables)
+      obj.render(graphics);
+  }
+
   private void updateListConsumables(int delta) {
-    for(BasicObject obj : listConsumables)
+    for (BasicObject obj : listConsumables)
       obj.update(delta);
   }
 
