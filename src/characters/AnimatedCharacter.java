@@ -10,9 +10,14 @@ import game.GameObject;
 
 public abstract class AnimatedCharacter extends GameObject {
 
-  public static final int STATE_IDLE = 0;
+  public static final int STATE_SHRINK = 0;
+  public static final int STATE_NORMAL = 1;
+  public static final int STATE_BIG = 2;
+  
 
   private Map<Integer, Animation> statedAnimations = new HashMap<>();
+
+  protected int currentState = STATE_NORMAL;
 
   public AnimatedCharacter() {
   }
@@ -24,7 +29,7 @@ public abstract class AnimatedCharacter extends GameObject {
 
   public AnimatedCharacter(int x, int y, Animation idleAnimation) {
     this(x, y);
-    statedAnimations.put(STATE_IDLE, idleAnimation);
+    statedAnimations.put(STATE_NORMAL, idleAnimation);
   }
 
   /**
@@ -34,7 +39,7 @@ public abstract class AnimatedCharacter extends GameObject {
    *          graphics where you want this object to be drawn
    */
   public void render(Graphics g) {
-    g.drawAnimation(statedAnimations.get(STATE_IDLE), x, y - statedAnimations.get(STATE_IDLE).getHeight());
+    g.drawAnimation(statedAnimations.get(currentState), x, y - statedAnimations.get(currentState).getHeight());
   }
 
   public void addState(int state, Animation anim) {

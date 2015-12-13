@@ -78,6 +78,14 @@ public class WindowGame extends BasicGame {
     if (Input.KEY_ESCAPE == key) {
       container.exit();
     }
+
+    if (Input.KEY_F == key) {
+      farmer.shrink();
+    }
+
+    if (Input.KEY_D == key) {
+      farmer.large();
+    }
   }
 
   public static void main(String[] args) throws SlickException {

@@ -34,7 +34,7 @@ public class Monster extends AnimatedCharacter {
     Animation idleDragon = new Animation(dragonImages, 180);
     idleDragon.setAutoUpdate(true);
     idleDragon.setLooping(true);
-    this.addState(STATE_IDLE, idleDragon);
+    this.addState(STATE_NORMAL, idleDragon);
 
     fireballs = new ArrayList<>();
     fireballs.add(new Fireball());
