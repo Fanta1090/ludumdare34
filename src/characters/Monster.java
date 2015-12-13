@@ -48,7 +48,6 @@ public class Monster extends AnimatedCharacter {
   }
 
   public void update(int delta) {
-
     Iterator<Fireball> fb = fireballs.iterator();
     while (fb.hasNext()) {
       Fireball f = fb.next();

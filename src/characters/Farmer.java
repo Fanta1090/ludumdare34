@@ -7,6 +7,8 @@ import org.newdawn.slick.SpriteSheet;
 
 public class Farmer extends AnimatedCharacter {
 
+  private int life = 3;
+
   public Farmer(int x, int y) throws SlickException {
     super(x, y);
 
@@ -43,5 +45,13 @@ public class Farmer extends AnimatedCharacter {
     if (currentState < 2) {
       currentState++;
     }
+  }
+  
+  public int getLife() {
+    return life;
+  }
+
+  public void setLife(int life) {
+    this.life = life;
   }
 }

@@ -7,6 +7,7 @@ import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
@@ -22,12 +23,14 @@ public class WindowGame extends BasicGame {
 
   public static final Integer GAME_WIDTH = 1200;
   public static final Integer GAME_HEIGHT = 600;
+  public static final Integer CONSUMABLE_SPAWN_TIME = 10000;
 
   GameContainer container;
   Parallaxe background;
   Farmer farmer;
   Monster monster;
   List<BasicObject> listConsumables;
+  Image life;
 
   int ellapsedTime = 0;
 
@@ -42,6 +45,7 @@ public class WindowGame extends BasicGame {
     farmer = new Farmer(250, background.getGroundHeight());
     monster = new Monster(-100, -20 + background.getGroundHeight());
     initConsumables();
+    life = new Image("resources/images/life.png");
   }
 
   @Override
@@ -50,6 +54,9 @@ public class WindowGame extends BasicGame {
     farmer.render(graphics);
     monster.renderM(graphics);
     renderListConsumables(graphics);
+    for(int i=0;i<farmer.getLife();i++) {
+      life.draw(i*20, 0);
+    }
   }
 
   @Override
@@ -58,7 +65,7 @@ public class WindowGame extends BasicGame {
     updateListConsumables(delta);
     ellapsedTime += delta;
 
-    if (ellapsedTime >= 10000) {
+    if (ellapsedTime >= CONSUMABLE_SPAWN_TIME) {
       int rand = RandomGenerator.getRandomNumber(1, 4);
       if (rand == 1)
         listConsumables.add(new Bread(background.getGroundHeight()));
